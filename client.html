@@ -1,0 +1,237 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Client Portal - NutriConnect</title>
+    <link rel="stylesheet" href="../css/style.css">
+    <link rel="stylesheet" href="client.css">
+    <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+</head>
+<body>
+    <nav class="navbar">
+        <div class="nav-container">
+            <div class="logo">
+                <i class="fas fa-heartbeat logo-icon"></i>
+                <a href="../index.html">NutriConnect</a>
+            </div>
+            <div class="nav-links">
+                <a href="../index.html">Home</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="client-hero">
+        <div class="hero-overlay"></div>
+        <div class="client-container">
+            <div class="client-header">
+                <h1>Your Health Journey Starts Here</h1>
+                <p>Complete your profile to get personalized recommendations from our expert dietitians</p>
+                <div class="features">
+                    <div class="feature">
+                        <i class="fas fa-user-md"></i>
+                        <span>Expert Dietitians</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-heartbeat"></i>
+                        <span>Personalized Plans</span>
+                    </div>
+                    <div class="feature">
+                        <i class="fas fa-chart-line"></i>
+                        <span>Track Progress</span>
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-wrapper">
+                <div class="form-progress-bar">
+                    <div class="form-progress"></div>
+                </div>
+                <form id="clientForm" class="client-form">
+                    <div class="form-section">
+                        <h3><i class="fas fa-user"></i> Personal Details</h3>
+                        <div class="form-group">
+                            <label for="name">Full Name</label>
+                            <input type="text" id="name" placeholder="Enter your full name (letters only)" required>
+                        </div>
+
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="age">Age</label>
+                                <input type="number" id="age" placeholder="Age (1-100)" min="1" max="100" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="gender">Gender</label>
+                                <select id="gender" required>
+                                    <option value="" disabled selected>Select gender</option>
+                                    <option value="male">Male</option>
+                                    <option value="female">Female</option>
+                                    <option value="other">Other</option>
+                                </select>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3><i class="fas fa-weight"></i> Body Measurements</h3>
+                        <div class="form-row">
+                            <div class="form-group">
+                                <label for="height">Height (cm)</label>
+                                <input type="number" id="height" placeholder="Height in cm (max 210)" max="210" required>
+                            </div>
+                            <div class="form-group">
+                                <label for="weight">Weight (kg)</label>
+                                <input type="number" id="weight" placeholder="Weight in kg (max 200)" max="200" required>
+                            </div>
+                        </div>
+                    </div>
+
+                    <div class="form-section">
+                        <h3><i class="fas fa-bullseye"></i> Your Goals</h3>
+                        <div class="form-group">
+                            <label for="goal">Select Your Primary Goal</label>
+                            <select id="goal" required>
+                                <option value="" disabled selected>Choose your fitness goal</option>
+                                <option value="Weight Loss - Balanced diet and exercise">Weight Loss - Balanced diet and exercise</option>
+                                <option value="Muscle Building - Strength training and nutrition">Muscle Building - Strength training and nutrition</option>
+                                <option value="Cardiovascular Health - Heart-healthy lifestyle">Cardiovascular Health - Heart-healthy lifestyle</option>
+                                <option value="Height Growth - For teens & young adults">Height Growth - For teens & young adults</option>
+                                <option value="Body Toning - Muscle definition">Body Toning - Muscle definition</option>
+                                <option value="Healthy Weight Gain - Nutrient-dense diet">Healthy Weight Gain - Nutrient-dense diet</option>
+                                <option value="Endurance Training - Stamina improvement">Endurance Training - Stamina improvement</option>
+                                <option value="Bone Health - Strength and prevention">Bone Health - Strength and prevention</option>
+                            </select>
+                        </div>
+                        <div id="bmi-preview" class="bmi-preview-section"></div>
+                    </div>
+
+                    <button type="submit" class="submit-btn">
+                        <i class="fas fa-user-md"></i> Suggest the Dietician
+                    </button>
+                </form>
+            </div>
+
+            <div id="results" class="results-section" style="display: none;">
+                <!-- Results will be dynamically inserted here -->
+            </div>
+        </div>
+    </div>
+
+    <footer class="footer">
+        <div class="footer-container">
+            <div class="footer-content">
+                <div class="footer-section">
+                    <h4>NutriConnect</h4>
+                    <p>Your bridge to better health and nutrition</p>
+                </div>
+                <div class="footer-section">
+                    <h4>Quick Links</h4>
+                    <a href="../index.html">Home</a>
+                    <a href="#about">About Us</a>
+                    <a href="#contact">Contact</a>
+                </div>
+                <div class="footer-section">
+                    <h4>Contact Us</h4>
+                    <p>Email: info@nutriconnect.com</p>
+                    <p>Phone: (555) 123-4567</p>
+                </div>
+            </div>
+            <div class="footer-bottom">
+                <p>© 2024 NutriConnect. All rights reserved.</p>
+            </div>
+        </div>
+    </footer>
+    <script src="client.js"></script>
+    <div id="dietitianModal" class="modal">
+        <div class="modal-content">
+            <span class="close-modal">&times;</span>
+            <div class="dietitian-detail">
+                <div class="dietitian-profile">
+                    <img id="dietitianImage" src="" alt="Dietitian Profile">
+                    <div class="profile-info">
+                        <h2 id="dietitianName"></h2>
+                        <div class="rating" id="dietitianRating"></div>
+                        <p id="dietitianSpecialty"></p>
+                    </div>
+                </div>
+                
+                <div class="detail-sections">
+                    <div class="detail-section">
+                        <h3><i class="fas fa-user-md"></i> Professional Details</h3>
+                        <p id="dietitianExperience"></p>
+                        <p id="dietitianDescription"></p>
+                    </div>
+
+                    <div class="detail-section">
+                        <h3><i class="fas fa-calendar-alt"></i> Available Time Slots</h3>
+                        <div class="time-slots" id="timeSlots"></div>
+                    </div>
+
+                    <div class="detail-section">
+                        <h3><i class="fas fa-clipboard-list"></i> Consultation Details</h3>
+                        <p id="consultationFee"></p>
+                        <p id="consultationDuration">Duration: 45 minutes</p>
+                    </div>
+
+                    <div class="booking-form">
+                        <h3>Book Appointment</h3>
+                        <form id="appointmentForm">
+                            <div class="form-group">
+                                <label>Select Date</label>
+                                <input type="date" id="appointmentDate" required>
+                            </div>
+                            <div class="form-group">
+                                <label>Select Time</label>
+                                <select id="appointmentTime" required>
+                                    <!-- Time slots will be populated dynamically -->
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Consultation Type</label>
+                                <select id="consultationType" required>
+                                    <option value="video">Video Call</option>
+                                    <option value="audio">Audio Call</option>
+                                    <option value="inPerson">In-Person</option>
+                                </select>
+                            </div>
+                            <div class="form-group">
+                                <label>Additional Notes</label>
+                                <textarea id="appointmentNotes" rows="3"></textarea>
+                            </div>
+                            <button type="submit" class="book-appointment-btn">
+                                Confirm Booking
+                            </button>
+                        </form>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script>
+        // Add input validation listeners
+        document.getElementById('height').addEventListener('input', function() {
+            if (this.value > 210) {
+                this.value = 210;
+                alert("Height cannot be more than 210 cm");
+            }
+        });
+
+        document.getElementById('weight').addEventListener('input', function() {
+            if (this.value > 200) {
+                this.value = 200;
+                alert("Weight cannot be more than 200 kg");
+            }
+        });
+
+        document.getElementById('age').addEventListener('input', function() {
+            if (this.value > 100) {
+                this.value = 100;
+                alert("Age cannot be more than 100 years");
+            }
+        });
+    </script>
+</body>
+</html>

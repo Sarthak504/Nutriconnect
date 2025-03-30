@@ -1,0 +1,131 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Admin Dashboard</title>
+    <link rel="stylesheet" href="../client/client.css">
+    <link rel="stylesheet" href="admin.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.4/css/all.min.css">
+</head>
+<body>
+    <div class="admin-container">
+        <nav class="admin-nav">
+            <h1><i class="fas fa-user-shield"></i> Admin Dashboard</h1>
+            <div class="nav-links">
+                <button onclick="showSection('dietitians')" class="active">
+                    <i class="fas fa-user-md"></i> Dietitians
+                </button>
+                <button onclick="showSection('doctors')">
+                    <i class="fas fa-hospital-user"></i> Doctors
+                </button>
+                <button onclick="showSection('clients')">
+                    <i class="fas fa-users"></i> Clients
+                </button>
+                <button onclick="showSection('database-overview')" class="database-btn">
+                    <i class="fas fa-database"></i> Database Overview
+                </button>
+            </div>
+        </nav>
+
+        <main class="admin-content">
+            <!-- Dietitians Section -->
+            <section id="dietitians" class="data-section active">
+                <div class="section-header">
+                    <h2>Registered Dietitians</h2>
+                    <div class="controls">
+                        <input type="text" id="dietitianSearch" placeholder="Search dietitians...">
+                        <select id="dietitianFilter">
+                            <option value="all">All</option>
+                            <option value="verified">Verified</option>
+                            <option value="unverified">Unverified</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="dietitiansList" class="data-grid"></div>
+            </section>
+
+            <!-- Doctors Section -->
+            <section id="doctors" class="data-section">
+                <div class="section-header">
+                    <h2>Registered Doctors</h2>
+                    <div class="controls">
+                        <input type="text" id="doctorSearch" placeholder="Search doctors...">
+                        <select id="doctorFilter">
+                            <option value="all">All</option>
+                            <option value="available">Available</option>
+                            <option value="busy">Busy</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="doctorsList" class="data-grid"></div>
+            </section>
+
+            <!-- Clients Section -->
+            <section id="clients" class="data-section">
+                <div class="section-header">
+                    <h2>Registered Clients</h2>
+                    <div class="controls">
+                        <input type="text" id="clientSearch" placeholder="Search clients...">
+                        <select id="clientFilter">
+                            <option value="all">All</option>
+                            <option value="active">Active</option>
+                            <option value="inactive">Inactive</option>
+                        </select>
+                    </div>
+                </div>
+                <div id="clientsList" class="data-grid"></div>
+            </section>
+
+            <!-- Database Overview Section -->
+            <section id="database-overview" class="data-section">
+                <div class="section-header">
+                    <h2><i class="fas fa-database"></i> Database Overview</h2>
+                    <button onclick="refreshDatabaseView()" class="refresh-btn">
+                        <i class="fas fa-sync-alt"></i> Refresh Data
+                    </button>
+                </div>
+                
+                <div class="database-stats">
+                    <div class="stat-card">
+                        <i class="fas fa-user-md"></i>
+                        <h3>Total Dietitians</h3>
+                        <span id="dietitianCount">0</span>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-hospital-user"></i>
+                        <h3>Total Doctors</h3>
+                        <span id="doctorCount">0</span>
+                    </div>
+                    <div class="stat-card">
+                        <i class="fas fa-users"></i>
+                        <h3>Total Clients</h3>
+                        <span id="clientCount">0</span>
+                    </div>
+                </div>
+
+                <div class="database-content">
+                    <div class="data-viewer">
+                        <h3>Raw Database Content</h3>
+                        <div class="data-controls">
+                            <select id="dataTypeSelect">
+                                <option value="all">All Data</option>
+                                <option value="dietitians">Dietitians</option>
+                                <option value="doctors">Doctors</option>
+                                <option value="clients">Clients</option>
+                            </select>
+                            <button onclick="exportData()" class="export-btn">
+                                <i class="fas fa-download"></i> Export Data
+                            </button>
+                        </div>
+                        <pre id="databaseContent" class="json-viewer"></pre>
+                    </div>
+                </div>
+            </section>
+        </main>
+    </div>
+
+    <script src="../database.js"></script>
+    <script src="admin.js"></script>
+</body>
+</html> 
